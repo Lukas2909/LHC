@@ -1,4 +1,12 @@
 package infrastructure.security;
 
-public class SecurityCenter /*extends IDCardManagement*/{
+import human_ressources.SecurityOfficer;
+
+public enum SecurityCenter{
+    instance;
+    private SecurityOfficer securityOfficer;
+
+    public void setSecurityOfficer(SecurityOfficer securityOfficer) {
+        this.securityOfficer = securityOfficer;
+    }
 }

@@ -4,6 +4,7 @@ import human_ressources.Visitor;
 import infrastructure.security.IDCardManagement;
 import infrastructure.security.Permission;
 import infrastructure.security.Reception;
+import infrastructure.security.SecurityCenter;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class Application {
 
         Visitor peter = new Visitor(3, "Peter", new int[10][10]);
         Reception.instance.setReceptionStaff(steve);
+        SecurityCenter.instance.setSecurityOfficer(klaas);
 
         IDCardManagement.instance.generateIDCards(187, 33);
 
@@ -32,6 +34,6 @@ public class Application {
 
         // II. Erstellung einer ID-Karte für Mitarbeiter durch Security
         klaas.createIDCard(steve, new Date(), new Date(), permissionsList);
-        System.out.println("test");
+        System.out.println("Stop!");
     }
 }
