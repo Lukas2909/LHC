@@ -12,12 +12,12 @@ public class ReceptionStaff extends Employee {
     public ReceptionStaff(int id, String name, int[][] iris, boolean isManager, boolean isMentor, boolean hasBudgetResponsibility){
         super(id, name, iris, isManager, isMentor, hasBudgetResponsibility);
     }
-    public void createIDCard(Visitor visitor, Date validFrom, Date validUntil, ArrayList<Permission> permissionList){
+    public void createIDCard(Technology technology, Visitor visitor, Date validFrom, Date validUntil, ArrayList<Permission> permissionList){
         IDCardVisitor idCard = (IDCardVisitor)IDCardManagement.instance.getNextBlankIDCard(IDCardType.Visitor);
         Writer writer = IDCardManagement.instance.getWriter();
-        writer.writeOnIDCard(idCard,visitor, validFrom, validUntil, permissionList);
-        writer.writePasswordOnChip(idCard, new Scanner(System.in).next());
-        visitor.idCard = idCard;
+        writer.writeOnIDCard(idCard,technology, visitor, validFrom, validUntil, permissionList);
+        writer.writePasswordOnChip(idCard, technology, IDCardManagement.instance.getReader().getTouchpad().enteredPasswort());
+        visitor.setIdCard(idCard);
     }
 
 }

@@ -14,13 +14,21 @@ public class SecurityOfficer extends Employee {
         this.hasWeapon = hasWeapon;
     }
 
-    public void createIDCard(Employee employee, Date validFrom, Date validUntil, ArrayList<Permission> permissionList){
+    public void createIDCard(Technology technology, Employee employee, Date validFrom, Date validUntil, ArrayList<Permission> permissionList){
         IDCardEmployee idCard = (IDCardEmployee) IDCardManagement.instance.getNextBlankIDCard(IDCardType.Employee);
         Writer writer = IDCardManagement.instance.getWriter();
-        writer.writeOnIDCard(idCard,employee, validFrom, validUntil, permissionList);
-        writer.writePasswordOnChip(idCard, new Scanner(System.in).next());
+        writer.writeOnIDCard(idCard, technology, employee, validFrom, validUntil, permissionList);
+        writer.writePasswordOnChip(idCard, technology, "helloLHC2020");
 
-        writer.writeFingerprintOnChip(idCard, IDCardManagement.instance.getReader().scanFingerprint(employee));
-        employee.idCard = idCard;
+        writer.writeFingerprintOnChip(idCard, technology, IDCardManagement.instance.getReader().scanFingerprint(employee));
+        IDCardManagement.instance.assignIDCard(idCard, employee);
+    }
+
+    public void lockIDCard(IDCardEmployee idCard, Technology technology){
+        IDCardManagement.instance.getWriter().writeIsLocked(idCard, technology, true);
+    }
+
+    public void unlockIDCard(IDCardEmployee idCard, Technology technology){
+        IDCardManagement.instance.getWriter().writeIsLocked(idCard, technology, false);
     }
 }

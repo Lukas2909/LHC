@@ -23,6 +23,34 @@ public abstract class IDCard {
         this.chipPassword= new ChipPassword();
     }
 
+    public Date getValidFrom() {
+        return validFrom;
+    }
+
+    public Date getValidUntil() {
+        return validUntil;
+    }
+
+    public int[][] getIrisStructure() {
+        return irisStructure;
+    }
+
+    public ArrayList<Permission> getPermissionList() {
+        return permissionList;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
     public Chip getChipPassword() {
         return chipPassword;
     }

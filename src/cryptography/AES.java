@@ -8,9 +8,13 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
-public class AES implements Cryptorator{
+public class AES implements ICryptorator{
     private static SecretKeySpec secretKey;
-    private static final String stringSecretKey="x7z99kvb6lU";
+    private final String stringSecretKey;
+
+    public AES(String masterPassword){
+        this.stringSecretKey=masterPassword;
+    }
 
     public static void setKey(String inputKey) {
         byte[] key;

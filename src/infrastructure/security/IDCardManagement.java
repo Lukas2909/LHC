@@ -1,13 +1,19 @@
 package infrastructure.security;
 
+import cryptography.AES;
+import human_ressources.Employee;
+import human_ressources.Person;
+import infrastructure.Configuration;
+
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
 public enum IDCardManagement {
     instance;
-    private Map<Integer,IDCard> idCardHashMap;
-    private Writer writer = new Writer();
-    private Reader reader = new Reader();
+    private Map<Integer,IDCard> idCardHashMap = new HashMap<Integer, IDCard>();
+    private Writer writer = new Writer(new Touchpad(), new AES(Configuration.instance.getAesMasterPassword()));
+    private Reader reader = new Reader(new Touchpad(), new AES(Configuration.instance.getAesMasterPassword()));
 
 
 
@@ -45,18 +51,8 @@ public enum IDCardManagement {
 
     }
 
-    public void assignIDCard(IDCard idCard, human_ressources.Employee employee)
-    {
-
-    }
-
-    public void lockIDCard(IDCard idCard)
-    {
-
-    }
-
-    public void clearIDCard(IDCard idCard)
-    {
-
+    public void assignIDCard(IDCard idCard, Employee employee) {
+        employee.setIdCard(idCard);
+        idCardHashMap.put(Integer.valueOf(idCard.getId()),idCard);
     }
 }

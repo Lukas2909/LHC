@@ -1,5 +1,8 @@
 package human_ressources;
 
+import infrastructure.security.IDCardEmployee;
+import infrastructure.security.IDCardVisitor;
+
 public abstract class Employee extends Person {
     protected boolean isManager;
     protected boolean isMentor;
@@ -10,5 +13,9 @@ public abstract class Employee extends Person {
         this.isManager = isManager;
         this.isMentor = isMentor;
         this.hasBudgetResponsibility = hasBudgetResponsibility;
+    }
+
+    public IDCardEmployee getIDCard(){
+        return (IDCardEmployee) this.idCard;
     }
 }
