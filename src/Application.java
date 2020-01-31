@@ -1,6 +1,7 @@
 import cryptography.AES;
 import human_ressources.*;
 import infrastructure.Configuration;
+import infrastructure.lhc.ComponentLoader;
 import infrastructure.lhc.Detector;
 import infrastructure.lhc.Experiment;
 import infrastructure.lhc.Ring;
