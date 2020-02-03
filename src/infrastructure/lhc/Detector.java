@@ -2,6 +2,7 @@ package infrastructure.lhc;
 
 import infrastructure.Configuration;
 import infrastructure.security.Reader;
+import com.google.common.eventbus.Subscribe;
 
 import java.io.File;
 import java.net.URL;
@@ -22,6 +23,15 @@ public class Detector implements IRODetector{
         this.reader = reader;
         this.ring = ring;
         this. componentLoader=new ComponentLoader();
+        this.isActivated=false;
+    }
+
+    public void activate(){
+        this.isActivated=true;
+    }
+
+    public void deactivate(){
+        this.isActivated=false;
     }
 
     public List<Experiment> getExperimentList(){
@@ -29,8 +39,13 @@ public class Detector implements IRODetector{
     }
 
     public void search(Experiment experiment){
-        //new ComponentLoader().executeSearchMethod();
-}
+        //componentLoader().executeSearchMethod();
+    }
+
+    @Subscribe
+    public void receive(AnalyseEvent analyseEvent){
+
+    }
 
 
 }
