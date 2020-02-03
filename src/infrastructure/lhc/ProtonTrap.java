@@ -10,8 +10,8 @@ public class ProtonTrap {
 
     }
 
-    public void release()
+    public Proton release()
     {
-
+        return protons[1]; // Temporär so definiert!!
     }
 }

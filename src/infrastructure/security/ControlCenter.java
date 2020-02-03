@@ -1,11 +1,8 @@
 package infrastructure.security;
 
 import human_ressources.Workplace;
-import infrastructure.lhc.ExperimentScope;
+import infrastructure.lhc.*;
 import com.google.common.eventbus.EventBus;
-import infrastructure.lhc.RunExperimentFullEvent;
-import infrastructure.lhc.RunExperimentPartialEvent;
-import infrastructure.lhc.Subscriber;
 
 public enum ControlCenter {
     instance;
@@ -31,7 +28,9 @@ public enum ControlCenter {
             break;
             default: break;
         }
+    }
 
-
+    public void analyseExperiment(){
+        eventBus.post(new AnalyseEvent(eventIDCount++));
     }
 }

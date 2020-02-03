@@ -2,12 +2,14 @@ package infrastructure.lhc;
 
 import com.google.common.eventbus.Subscribe;
 
+import java.util.UUID;
+
 public class Ring extends Subscriber{
     private boolean isActivated;
     private Experiment currentExperiment;
     private int energy;
     private LargeHadronCollider largeHadronCollider;
-    private Detector detector;
+    private IDetector detector;
     private ProtonTrap[] protonTraps = new ProtonTrap[2];
     private Magnet[] magnets = new Magnet[72];
 
@@ -51,11 +53,13 @@ public class Ring extends Subscriber{
         }
     }
 
-    public void releaseProton()
+    public Proton[] releaseProton()
     {
+        Proton[] releasedProtons = new Proton[2];
         for(int i=0;i<2;i++){
-            protonTraps[i].release();
+            releasedProtons[i]=protonTraps[i].release();
         }
+        return releasedProtons;
     }
 
     public void increaseEnergy(int delta)
@@ -83,11 +87,15 @@ public class Ring extends Subscriber{
 
         this.activate(runExperimentFullEvent.getInitialEnergy());
         this.activateMagneticField();
-        this.releaseProton();
+        Proton[] releasedProtons = this.releaseProton();
         while(this.energy<300000){
             this.increaseEnergy(25000);
         }
-        this.collide(new Proton(),new Proton());
+        currentExperiment = new Experiment(UUID.randomUUID(), releasedProtons[0].getId(), releasedProtons[1].getId());
+        this.collide(releasedProtons[0],releasedProtons[1]);
+
+        detector.addExperimentToList(currentExperiment);
+        currentExperiment = null;
     }
 
     @Subscribe
