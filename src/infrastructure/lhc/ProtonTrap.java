@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-public class ProtonTrap {
+public class ProtonTrap implements IProtonTrap{
     private ProtonTrapID id;
 
     private Queue<IProton> protons;

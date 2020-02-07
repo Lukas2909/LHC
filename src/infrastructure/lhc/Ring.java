@@ -13,12 +13,11 @@ public class Ring extends Subscriber implements IRing{
     private IProtonTrap[] protonTraps ;
     private IMagnet[] magnets;
 
-    public Ring(int id, LargeHadronCollider lhc, Detector detector, IProtonTrap protonTrap1, IProtonTrap protonTrap2){
+    public Ring(int id, LargeHadronCollider lhc, IProtonTrap protonTrap1, IProtonTrap protonTrap2){
         super(id);
         this.isActivated=false;
         this.energy =0;
         this.largeHadronCollider=lhc;
-        this.detector=detector;
         this.protonTraps= new IProtonTrap[2];
         this.protonTraps[0]=protonTrap1;
         this.protonTraps[1]=protonTrap2;
@@ -26,8 +25,10 @@ public class Ring extends Subscriber implements IRing{
         for(int i=0;i<72;i++){
             magnets[i]=new Magnet();
         }
+    }
 
-
+    public void addDetector(IDetector detector){
+        this.detector = detector;
     }
     public void activate()
     {

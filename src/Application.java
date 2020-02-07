@@ -1,10 +1,7 @@
 import cryptography.AES;
 import human_ressources.*;
 import infrastructure.Configuration;
-import infrastructure.lhc.ComponentLoader;
-import infrastructure.lhc.Detector;
-import infrastructure.lhc.Experiment;
-import infrastructure.lhc.Ring;
+import infrastructure.lhc.*;
 import infrastructure.security.*;
 
 import java.awt.*;
@@ -20,11 +17,12 @@ public class Application {
         Reader reader = new Reader(new Touchpad(), new AES(Configuration.instance.getAesMasterPassword()));
 
         // Personen erstellen
-        ReceptionStaff steve = new ReceptionStaff(1, "Steve", new int[10][10],false, false, false);
-        SecurityOfficer klaas = new SecurityOfficer(2, "Klaas", new int[10][10],false, false, false, true);
-        Visitor peter = new Visitor(3, "Peter", new int[10][10]);
-        Researcher albert = new Researcher(4, "Albert", new int[10][10], false, false,false, false, new Detector(reader, new Ring()));
-        HRAssistant max = new HRAssistant(5, "Max", new int[10][10], false, false, false, EmployeeManagement.instance);
+        ReceptionStaff steve = new ReceptionStaff(1, "Steve",false, false, false);
+        SecurityOfficer klaas = new SecurityOfficer(2, "Klaas", false, false, false, true);
+        Visitor peter = new Visitor(3, "Peter");
+
+        Researcher albert = new Researcher(4, "Albert", false, false,false, false, new Detector(reader, new Ring(187, new LargeHadronCollider(), new ProtonTrap(ProtonTrapID.A), new ProtonTrap(ProtonTrapID.B))));
+        HRAssistant max = new HRAssistant(5, "Max", false, false, false, EmployeeManagement.instance);
 
         // Rezeption und SecurityCenter Mitarbeiter zuweisen
         Reception.instance.setReceptionStaff(steve);
@@ -77,7 +75,7 @@ public class Application {
         // V. Forscher greift lesend auf die im Detector gespeicherten Experimente zu
         System.out.println("");
         System.out.println("V. Forscher greift lesend auf die im Detector gespeicherten Experimente zu:");
-        List<Experiment> experimentList = albert.getIroDetector().getExperimentList();
+        List<IExperiment> experimentList = albert.getIroDetector().getExperimentList();
         if(experimentList!=null){
             System.out.println("Erfolgreich!");
         }

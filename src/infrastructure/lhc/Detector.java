@@ -16,10 +16,10 @@ public class Detector implements IRODetector, IDetector{
     private boolean isActivated;
     private List<IExperiment> experimentList;
     private Reader reader;
-    private Ring ring;
+    private IRing ring;
     private final ComponentLoader componentLoader;
 
-    public Detector(Reader reader, Ring ring){
+    public Detector(Reader reader, IRing ring){
         this.experimentList = new LinkedList<IExperiment>();
         this.reader = reader;
         this.ring = ring;
