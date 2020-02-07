@@ -15,6 +15,8 @@ public enum Configuration {
     public String fullPathToJavaArchive = userDirectory + subFolderPathOfJavaArchive;
     public String nameOfClass = "Native";
 
+    public String protonData = userDirectory + fileSeparator + "data" + fileSeparator;
+
     public SearchAlgorithm getDetectorSearchAlgorithm() {
         return detectorSearchAlgorithm;
     }

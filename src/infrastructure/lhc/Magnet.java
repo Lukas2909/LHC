@@ -1,6 +1,6 @@
 package infrastructure.lhc;
 
-public class Magnet {
+public class Magnet implements IMagnet{
     private boolean isActivated;
     private MagneticDirection direction;
     private int fieldStrength;

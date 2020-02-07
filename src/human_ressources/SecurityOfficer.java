@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-public class SecurityOfficer extends Employee {
+public class SecurityOfficer extends Employee implements ISecurityOfficer{
     private boolean hasWeapon;
 
-    public SecurityOfficer(int id, String name, int[][] iris, boolean isManager, boolean isMentor, boolean hasBudgetResponsibility, boolean hasWeapon){
-        super(id, name, iris, isManager, isMentor, hasBudgetResponsibility);
+    public SecurityOfficer(int id, String name,boolean isManager, boolean isMentor, boolean hasBudgetResponsibility, boolean hasWeapon){
+        super(id, name, isManager, isMentor, hasBudgetResponsibility);
         this.hasWeapon = hasWeapon;
     }
 

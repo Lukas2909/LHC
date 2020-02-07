@@ -10,8 +10,8 @@ public class HRAssistant extends Employee {
         return iroEmployeeManagement;
     }
 
-    public HRAssistant(int id, String name, int[][] iris, boolean isManager, boolean isMentor, boolean hasBudgetResponsibility, IROEmployeeManagement iroEmployeeManagement){
-        super(id, name, iris, isManager, isMentor, hasBudgetResponsibility);
+    public HRAssistant(int id, String name, boolean isManager, boolean isMentor, boolean hasBudgetResponsibility, IROEmployeeManagement iroEmployeeManagement){
+        super(id, name, isManager, isMentor, hasBudgetResponsibility);
         this.iroEmployeeManagement = iroEmployeeManagement;
     }
 }

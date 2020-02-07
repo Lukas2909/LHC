@@ -3,7 +3,7 @@ package infrastructure.lhc;
 import java.util.Date;
 import java.util.UUID;
 
-public class Experiment {
+public class Experiment implements IExperiment{
     private UUID uuid;
     private String dateTimeStamp;
     private boolean isHiggsBosonFound;

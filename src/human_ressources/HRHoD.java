@@ -5,8 +5,8 @@ import infrastructure.security.IEmployeeManagement;
 public class HRHoD extends Employee {
     private IEmployeeManagement iEmployeeManagement;
 
-    public HRHoD(int id, String name, int[][] iris, boolean isManager, boolean isMentor, boolean hasBudgetResponsibility, IEmployeeManagement iEmployeeManagement){
-        super(id, name, iris, isManager, isMentor, hasBudgetResponsibility);
+    public HRHoD(int id, String name,  boolean isManager, boolean isMentor, boolean hasBudgetResponsibility, IEmployeeManagement iEmployeeManagement){
+        super(id, name, isManager, isMentor, hasBudgetResponsibility);
         this.iEmployeeManagement = iEmployeeManagement;
     }
 

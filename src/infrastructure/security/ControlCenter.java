@@ -4,11 +4,11 @@ import human_ressources.Workplace;
 import infrastructure.lhc.*;
 import com.google.common.eventbus.EventBus;
 
-public enum ControlCenter {
+public enum ControlCenter implements IControlCenter{
     instance;
     private final String roomID = "CO1";
     private Workplace[] workplaces = new Workplace[3];
-    private EventBus eventBus = new EventBus("ControlCenter");
+    private EventBus eventBus = new EventBus(this.roomID);
     private int eventIDCount= 0;
 
     public void addSubscriber(Subscriber subscriber){
@@ -18,6 +18,7 @@ public enum ControlCenter {
 
     public void startExperiment(){
         eventBus.post(new RunExperimentFullEvent(eventIDCount++,50000));
+        analyseExperiment();
     }
 
     public void startExperiment(ExperimentScope scope, int initialEnergy){
@@ -28,6 +29,7 @@ public enum ControlCenter {
             break;
             default: break;
         }
+        analyseExperiment();
     }
 
     public void analyseExperiment(){

@@ -12,4 +12,21 @@ public class ResearchGroup {
         this.researcherList = researcherList;
         this.scientificAssistantList=scientificAssistantList;
     }
+
+    public void addResearcher(Researcher researcher){
+        researcherList.add(researcher);
+        researcher.getResearchGroups().add(this);
+    }
+    public void removeResearcher(Researcher researcher){
+        researcherList.remove(researcher);
+        researcher.getResearchGroups().remove(this);
+    }
+    public void addScientificAssistant(ScientificAssistant scientificAssistant){
+        scientificAssistantList.add(scientificAssistant);
+        scientificAssistant.getResearchGroups().add(this);
+    }
+    public void removeScientificAssistant(ScientificAssistant scientificAssistant){
+        scientificAssistantList.remove(scientificAssistant);
+        scientificAssistant.getResearchGroups().remove(this);
+    }
 }

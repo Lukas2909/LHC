@@ -1,9 +1,13 @@
 package infrastructure.energy;
 
-public class USP {
+public class USP implements IUSP {
     private boolean isStandBy;
     private boolean isActivated;
-    private Battery[] batteries=new Battery[25]; //Aggregation
+    private Battery[] batteries; //Aggregation
+
+    public USP() {
+        this.batteries=new Battery[25];
+    }
 
     public void determineChargeState()
     {
@@ -17,7 +21,8 @@ public class USP {
 
     public int takeOut()
     {
-        return 1; // NUR ZUM KOMPILIEREN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // NUR ZUM KOMPILIEREN!
+        return 0;
     }
 
 }

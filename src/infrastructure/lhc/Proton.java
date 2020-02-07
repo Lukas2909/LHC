@@ -1,20 +1,21 @@
 package infrastructure.lhc;
 
-
-
-public class Proton {
+public class Proton implements IProton{
     private int id;
-    private int[][][] structure = new int[100][100][100];
-    private char[][][] content= new char[100][100][100];
+    private int[][][] structure;
+    private char[][][] content;
     private double weight;
 
     public int getId() {
         return id;
     }
 
-    public Proton(int id, String input){
+    public Proton(int id, int[][][] structure) {
+        this.structure = structure;
         this.id = id;
     }
 
-
+    public int[][][] getStructure() {
+        return this.structure;
+    }
 }

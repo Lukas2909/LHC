@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-public class ReceptionStaff extends Employee {
+public class ReceptionStaff extends Employee implements IReceptionStaff{
 
-    public ReceptionStaff(int id, String name, int[][] iris, boolean isManager, boolean isMentor, boolean hasBudgetResponsibility){
-        super(id, name, iris, isManager, isMentor, hasBudgetResponsibility);
+    public ReceptionStaff(int id, String name, boolean isManager, boolean isMentor, boolean hasBudgetResponsibility){
+        super(id, name, isManager, isMentor, hasBudgetResponsibility);
     }
     public void createIDCard(Technology technology, Visitor visitor, Date validFrom, Date validUntil, ArrayList<Permission> permissionList){
         IDCardVisitor idCard = (IDCardVisitor)IDCardManagement.instance.getNextBlankIDCard(IDCardType.Visitor);

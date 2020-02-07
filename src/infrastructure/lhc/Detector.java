@@ -14,16 +14,16 @@ import java.util.List;
 public class Detector implements IRODetector, IDetector{
     private static String higgsBosonStructure = "higgs";
     private boolean isActivated;
-    private List<Experiment> experimentList;
+    private List<IExperiment> experimentList;
     private Reader reader;
     private Ring ring;
     private final ComponentLoader componentLoader;
 
     public Detector(Reader reader, Ring ring){
-        this.experimentList = new LinkedList<Experiment>();
+        this.experimentList = new LinkedList<IExperiment>();
         this.reader = reader;
         this.ring = ring;
-        this. componentLoader=new ComponentLoader();
+        this.componentLoader=new ComponentLoader();
         this.isActivated=false;
     }
 
@@ -35,16 +35,16 @@ public class Detector implements IRODetector, IDetector{
         this.isActivated=false;
     }
 
-    public List<Experiment> getExperimentList(){
+    public List<IExperiment> getExperimentList(){
         return this.experimentList;
     }
 
 
-    public void addExperimentToList(Experiment experiment){
+    public void addExperimentToList(IExperiment experiment){
         this.experimentList.add(experiment);
     }
 
-    public void search(Experiment experiment){          //Blockstrukturausgabe noch implementieren!!!
+    public void search(IExperiment experiment){          //Blockstrukturausgabe noch implementieren!!!
         Date started = new Date();
         Block[] blocks=experiment.getBlocks();
         for (Block b:blocks) {
@@ -57,7 +57,7 @@ public class Detector implements IRODetector, IDetector{
                 System.out.println("[ii] Zeitstempel: "+experiment.getDateTimeStamp());
                 System.out.println("[iii] ID Proton 1: "+ experiment.getProtonID1()+ " ID Proton 2: "+ experiment.getProtonID2());
                 System.out.println("[iv] ID Block: "+ b.getUuid());
-                System.out.println("[v] Blockstruktur: ???");
+                System.out.println("[v] Blockstruktur: "+b.getStructure());
                 System.out.println("[vi] Laufzeit der Analyse: "+ searchTime + "ms");
             }
         }
@@ -66,7 +66,7 @@ public class Detector implements IRODetector, IDetector{
 
     @Subscribe
     public void receive(AnalyseEvent analyseEvent){
-        for(Experiment e : experimentList){
+        for(IExperiment e : experimentList){
             if(!e.getCheckedBefore()){
                 search(e);
             }
