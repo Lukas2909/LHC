@@ -12,4 +12,6 @@ public interface IExperiment {
     public String getDateTimeStamp();
     public int getProtonID1();
     public int getProtonID2();
+    public boolean getIsHiggsFound();
+    public int getInternalBlockCount();
 }

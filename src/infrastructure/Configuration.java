@@ -15,7 +15,15 @@ public enum Configuration {
     public String fullPathToJavaArchive = userDirectory + subFolderPathOfJavaArchive;
     public String nameOfClass = "Native";
 
-    public String protonData = userDirectory + fileSeparator + "data" + fileSeparator;
+
+    public boolean LoadDataFromDatabase = false;
+
+    public String dataDirectory = userDirectory + fileSeparator + "data" + fileSeparator;
+    public String databaseFile = dataDirectory + "datastore.db";
+
+    public String databaseDriverName = "jdbc:hsqldb:";
+    public String databaseUsername = "sa";
+    public String databasePassword = "";
 
     public SearchAlgorithm getDetectorSearchAlgorithm() {
         return detectorSearchAlgorithm;

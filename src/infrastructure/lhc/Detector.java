@@ -1,9 +1,11 @@
 package infrastructure.lhc;
 
 import infrastructure.Configuration;
+import infrastructure.DataBaseManager;
 import infrastructure.security.Reader;
 import com.google.common.eventbus.Subscribe;
 
+import javax.xml.crypto.Data;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -20,6 +22,14 @@ public class Detector implements IRODetector, IDetector{
     private final ComponentLoader componentLoader;
 
     public Detector(Reader reader, IRing ring){
+        if(Configuration.instance.LoadDataFromDatabase){
+            DataBaseManager.instance.setupConnection();
+            this.experimentList=DataBaseManager.instance.selectExperiments();
+            DataBaseManager.instance.shutdown();
+        }
+        else{
+            this.experimentList = new LinkedList<IExperiment>();
+        }
         this.experimentList = new LinkedList<IExperiment>();
         this.reader = reader;
         this.ring = ring;
@@ -71,6 +81,21 @@ public class Detector implements IRODetector, IDetector{
                 search(e);
             }
         }
+    }
+
+    public void safeToDataBase(){
+        DataBaseManager.instance.setupConnection();
+        if(Configuration.instance.LoadDataFromDatabase){
+            DataBaseManager.instance.dropTables();
+        }
+        DataBaseManager.instance.createTableBlocks();
+        DataBaseManager.instance.createTableExperiments();
+        for (IExperiment experiment:experimentList
+             ) {
+            DataBaseManager.instance.insert(experiment);
+
+        }
+        DataBaseManager.instance.shutdown();
     }
 
 

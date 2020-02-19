@@ -18,7 +18,7 @@ public class ProtonTrap implements IProtonTrap{
         this.id = trapID;
         this.protons = new ArrayDeque<>();
         for (int i = trapID.equals(ProtonTrapID.A) ? 1 : 2; i <= 50; i += 2) {
-            loadData(i, Configuration.instance.protonData + "proton_" + String.format("%02d", i) + ".txt");
+            loadData(i, Configuration.instance.dataDirectory + "proton_" + String.format("%02d", i) + ".txt");
         }
     }
 
